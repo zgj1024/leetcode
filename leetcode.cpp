@@ -1,6 +1,8 @@
 #include <iostream>
+#include <limits.h>
 #include <string>
 #include <vector>
+
 using namespace std;
 
 const string RST = "\x1B[0m";
@@ -12,6 +14,27 @@ const string BOLD = "\x1B[1m";
 
 static int test_count = 0;
 static int test_pass = 0;
+
+struct TreeNode {
+  int val;
+  TreeNode *left;
+  TreeNode *right;
+  TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+};
+
+struct ListNode {
+  int val;
+  ListNode *next;
+  ListNode(int x) : val(x), next(NULL) {}
+};
+
+void printNode(ListNode *head) {
+  while (head) {
+    cout << head->val << "->";
+    head = head->next;
+  }
+  cout << "nil" << endl;
+}
 
 template <typename T> void ASSERT_EQUAL(T expect, T actual, string args) {
   test_count++;
@@ -40,8 +63,6 @@ template <typename T> ostream &operator<<(ostream &out, const vector<T> &v) {
 }
 
 void report() {
-  if (test_count == test_pass) {
-    cout << BOLD << GRN << test_pass << "/" << test_count << " ";
-    cout << test_pass * 100.0 / test_count << "% passed" << RST << RST << endl;
-  }
+  cout << BOLD << GRN << test_pass << "/" << test_count << " ";
+  cout << test_pass * 100.0 / test_count << "% passed" << RST << RST << endl;
 }
