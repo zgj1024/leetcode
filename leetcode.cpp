@@ -37,6 +37,19 @@ void printNode(ListNode *head) {
   cout << "nil" << endl;
 }
 
+struct Interval {
+  int start;
+  int end;
+  Interval() : start(0), end(0) {}
+  Interval(int s, int e) : start(s), end(e) {}
+};
+
+void printIntervalList(vector<Interval> list) {
+  for (Interval interval : list) {
+    cout << "[" << interval.start << "," << interval.end << "]" << endl;
+  }
+}
+
 template <typename T> void ASSERT_EQUAL(T expect, T actual, string args) {
   test_count++;
   if (!args.empty()) {
