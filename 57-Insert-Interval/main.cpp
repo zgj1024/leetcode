@@ -8,10 +8,13 @@ static int x = []() {
 
 class Solution {
 public:
-  vector<Interval> merge(vector<Interval> &intervals) {
-    if (intervals.empty() || intervals.size() == 0)
-      return {};
+  vector<Interval> insert(vector<Interval> &intervals, Interval newInterval) {
 
+    intervals.push_back(newInterval);
+
+    if (intervals.size() == 1) {
+      return intervals;
+    }
     sort(intervals.begin(), intervals.end(), [](Interval A, Interval B) {
       return A.start == B.start ? A.end < B.end : A.start < B.start;
     });
@@ -27,24 +30,13 @@ public:
         res.push_back(interval);
       }
     }
+
     return res;
   }
 };
-
 int main(int argc, char *argv[]) {
+
   Solution s = Solution();
 
-  vector<Interval> v(0);
-  Interval i1 = Interval(1, 3);
-  Interval i2 = Interval(2, 6);
-  Interval i3 = Interval(8, 10);
-  Interval i4 = Interval(15, 18);
-
-  v.push_back(i1);
-  v.push_back(i2);
-  v.push_back(i3);
-  v.push_back(i4);
-
-  printIntervalList(s.merge(v));
   return 0;
 }
