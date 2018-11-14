@@ -7,7 +7,8 @@ static int x = []() {
 }();
 
 class Solution {
-  Public : void sortColors(vector<int> &nums) {
+public:
+  void sortColors(vector<int> &nums) {
     int a[3] = {0, 0, 0};
     for (int i = 0; i < nums.size(); i++) {
       a[nums[i]] += 1;
